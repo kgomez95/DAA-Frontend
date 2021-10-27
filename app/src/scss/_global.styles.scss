@@ -1,0 +1,69 @@
+.cursor-pointer {
+    cursor: pointer;
+}
+
+// ====================================================================================== //
+// === DATA TABLES ====================================================================== //
+// ====================================================================================== //
+.dt-th {
+    display: flex;
+}
+.dt-th > span {
+    width: 100%;
+}
+
+.dt-sort {
+    display: flex;
+    //width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+}
+.dt-sort::before {
+    right: 1em;
+    content: "↑";
+    opacity: 0.3;
+}
+.dt-sort::after {
+    right: 0.5em;
+    content: "↓";
+    opacity: 0.3;
+}
+
+.dt-sort-asc::before {
+    opacity: 1;
+}
+.dt-sort-desc::after {
+    opacity: 1;
+}
+
+.table-responsive {
+    overflow: hidden;
+}
+
+.table-responsive > .mobile {
+    display: none !important;
+}
+
+@media only screen and (max-width: 750px) {
+    .basic-filter-container {
+        justify-content: right;
+    }
+    .basic-filter-container > input {
+        width: 100% !important;
+    }
+    .basic-filter-container > div {
+        margin-top: 5px;
+        display: flex;
+        flex-direction: row-reverse;
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    .table-responsive > .desktop {
+        display: none !important;
+    }
+
+    .table-responsive > .mobile {
+        display: table !important;
+    }
+}
