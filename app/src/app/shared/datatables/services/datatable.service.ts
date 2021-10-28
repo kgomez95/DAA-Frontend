@@ -9,21 +9,21 @@ export abstract class DataTableService {
      * @description Llama al servicio correspondiente para recuperar los datos que se mostrarán en la tabla.
      * @returns Retorna los datos para mostrar en la tabla.
      */
-    public abstract recoverData(basicFilter: string, advancedFilters: any, offset: number, limit: number, sort: any): any;
+    public abstract recoverData(basicFilter: string, advancedFilters: any, offset: number, limit: number, sort: any): Observable<any>;
 
     /**
      * @name recoverDataHeaders
      * @description Recupera las cabeceras que se mostrarán en la tabla.
      * @returns Retorna las cabecerás para mostrar en la tabla.
      */
-    public abstract recoverDataHeaders(): any[];
+    public abstract recoverDataHeaders(): Observable<any[]>;
 
     /**
      * @name recoverFilters
      * @description Recupera los filtros que se mostrarán en la tabla.
      * @returns Retorna los filtros para mostrar en la tabla.
      */
-    public abstract recoverFilters(): any;
+    public abstract recoverFilters(): Observable<any>;
 
     /**
      * @name createRecord

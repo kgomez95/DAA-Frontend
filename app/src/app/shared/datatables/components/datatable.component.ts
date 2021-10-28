@@ -59,7 +59,6 @@ export class DataTableComponent implements OnInit {
 
         this.recoverHeaders();
         this.recoverFilters();
-        this.recoverData();
     }
 
     /**
@@ -68,7 +67,14 @@ export class DataTableComponent implements OnInit {
      */
     public recoverHeaders(): void {
         if (this.service) {
-            this.headers = this.service.recoverDataHeaders();
+            this.service.recoverDataHeaders().subscribe(
+                (response: any) => {
+                    // Cogemos las cabeceras que nos retorna el servicio.
+                    this.headers = response;
+                },
+                (error: any) => {
+                    console.log(error);
+                });
         }
         else {
             console.error('[recoverHeaders] no se puede recuperar las cabeceras, porque no hay servicio.');
@@ -83,21 +89,32 @@ export class DataTableComponent implements OnInit {
         if (this.service) {
             this.isValidPagination();
 
-            // NOTE: Recuperamos los datos.
             console.log(this.filters);
-            let response = this.service.recoverData(this.basicFilter, this.filters.advanced, (this.items * (this.page - 1)), parseInt(this.items.toString()), this.sortRecord);
-            this.records = response.data.records;
-            this.actions = response.data.actions;
-            console.log(this.records);
 
-            // NOTE: Calculamos el total de páginas
-            this.totalRecords = response.totalRecords;
-            this.totalPages = response.totalPages;
-            this.buildPagination();
+            this.filters.basic.forEach((filter: any) => {
+                filter.value = this.basicFilter;
+            });
 
-            if (!this.isValidPagination()) {
-                this.recoverData();
-            }
+            // NOTE: Recuperamos los datos.
+            this.service.recoverData(this.filters.basic, this.filters.advanced, (this.items * (this.page - 1)), parseInt(this.items.toString()), this.sortRecord).subscribe(
+                (response: any) => {
+                    // Cogemos los datos que nos retorna el servicio.
+                    this.records = response.data.records;
+                    this.actions = response.data.actions;
+                    console.log(this.records);
+
+                    // NOTE: Calculamos el total de páginas
+                    this.totalRecords = response.totalRecords;
+                    this.totalPages = response.totalPages;
+                    this.buildPagination();
+
+                    if (!this.isValidPagination()) {
+                        this.recoverData();
+                    }
+                },
+                (error: any) => {
+                    console.log(error);
+                });
         }
         else {
             console.error('[recoverData] no se puede recuperar los datos, porque no hay servicio.');
@@ -110,10 +127,20 @@ export class DataTableComponent implements OnInit {
      */
     public recoverFilters(): void {
         if (this.service) {
-            this.filters = this.service.recoverFilters();
+            this.service.recoverFilters().subscribe(
+                (response: any) => {
+                    // Cogemos los filtros que nos retorna el servicio.
+                    this.filters = response;
 
-            // NOTE: Una vez recuperados los filtros contruimos el placeholder para los filtros básicos.
-            this.buildBasicFilters();
+                    // NOTE: Una vez recuperados los filtros contruimos el placeholder para los filtros básicos.
+                    this.buildBasicFilters();
+
+                    // Una vez tenemos los filtros vamos a recuperar los datos.
+                    this.recoverData();
+                },
+                (error: any) => {
+                    console.log(error);
+                });
         }
         else {
             console.error('[recoverFilters] no se puede recuperar los filtros, porque no hay servicio.');
