@@ -96,7 +96,7 @@ export class DataTableComponent implements OnInit {
             });
 
             // NOTE: Recuperamos los datos.
-            this.service.recoverData(this.filters.basic, this.filters.advanced, (this.items * (this.page - 1)), parseInt(this.items.toString()), this.sortRecord).subscribe(
+            this.service.recoverData(this.filters, (this.items * (this.page - 1)), parseInt(this.items.toString()), this.sortRecord).subscribe(
                 (response: any) => {
                     // Cogemos los datos que nos retorna el servicio.
                     this.records = response.data.records;

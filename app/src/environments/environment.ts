@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  api: {
+    baseUrl: 'http://localhost:50000',
+    actions: {
+      dataHeader: '/api/datatables/dataHeader',
+      dataFilter: '/api/datatables/dataFilter',
+      dataView: '/api/datatables/dataView'
+    }
+  }
 };
 
 /*

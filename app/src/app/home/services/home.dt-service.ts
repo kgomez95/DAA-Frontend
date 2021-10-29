@@ -6,10 +6,11 @@ import { HttpClient } from '@angular/common/http';
 // Importaciones de shared.
 import { DataTableService } from '@shared/datatables/services/datatable.service';
 
-@Injectable()
-export class HomeDtService implements DataTableService {
+// Importaciones de environments:
+import { environment } from '@environments/environment';
 
-    // TODO: Poner las urls en el environments.    
+@Injectable()
+export class HomeDtService implements DataTableService {  
 
     constructor(
         private httpClient: HttpClient
@@ -20,24 +21,21 @@ export class HomeDtService implements DataTableService {
      * @description Llama al servicio correspondiente para recuperar los datos que se mostrarán en la tabla.
      * @returns Retorna los datos para mostrar en la tabla.
      */
-    public recoverData(basicFilter: string, advancedFilters: any, offset: number, limit: number, sort: any): Observable<any> {
+    public recoverData(filters: any, offset: number, limit: number, sort: any): Observable<any> {
         let headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         };
         let body = {
             dataKey: 'DT_SCORE_GAMES',
-            data: {
-                basic: basicFilter,
-                advanced: advancedFilters
-            },
+            data: filters,
             sort: sort,
             offset: offset,
             limit: limit
         };
 
         return this.httpClient.post<any>(
-            'http://localhost:50000/api/datatables/dataView',
+            environment.api.baseUrl + environment.api.actions.dataView,
             body,
             { headers }
         );
@@ -50,7 +48,7 @@ export class HomeDtService implements DataTableService {
      */
     public recoverDataHeaders(): Observable<any[]> {
         return this.httpClient.get<any[]>(
-            'http://localhost:50000/api/datatables/dataHeader',
+            environment.api.baseUrl + environment.api.actions.dataHeader,
             {
                 headers: {
                     'Accept': 'application/json',
@@ -69,7 +67,7 @@ export class HomeDtService implements DataTableService {
      */
     public recoverFilters(): Observable<any> {
         return this.httpClient.get<any[]>(
-            'http://localhost:50000/api/datatables/dataFilter',
+            environment.api.baseUrl + environment.api.actions.dataFilter,
             {
                 headers: {
                     'Accept': 'application/json',
