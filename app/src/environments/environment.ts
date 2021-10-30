@@ -11,6 +11,11 @@ export const environment = {
       dataFilter: '/api/datatables/dataFilter',
       dataView: '/api/datatables/dataView'
     }
+  },
+  dataTables: {
+    scoreGames: 'DT_SCORE_GAMES',
+    videoGames: 'DT_VIDEOGAMES',
+    platforms: 'DT_PLATFORMS'
   }
 };
 

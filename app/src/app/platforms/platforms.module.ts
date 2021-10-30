@@ -3,9 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-// Importaciones de home.
-import { HomeRoutingModule } from './home-routing.module';
-import { HomeComponent } from './components/home.component';
+// Importaciones de platforms.
+import { PlatformsRoutingModule } from './platforms-routing.module';
+import { PlatformsComponent } from './components/platforms.component';
+import { PlatformsDtService } from './services/platforms.dt-service';
 
 // Importaciones de shared.
 import { DataTablesModule } from '@shared/datatables/datatables.module';
@@ -15,12 +16,15 @@ import { DataTablesModule } from '@shared/datatables/datatables.module';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        HomeRoutingModule,
+        PlatformsRoutingModule,
         DataTablesModule
     ],
     declarations: [
-        HomeComponent
+        PlatformsComponent
+    ],
+    providers: [
+        PlatformsDtService
     ]
 })
 
-export class HomeModule { }
+export class PlatformsModule { }

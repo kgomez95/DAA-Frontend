@@ -3,9 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-// Importaciones de home.
-import { HomeRoutingModule } from './home-routing.module';
-import { HomeComponent } from './components/home.component';
+// Importaciones de videogames.
+import { VideoGamesRoutingModule } from './videogames-routing.module';
+import { VideoGamesComponent } from './components/videogames.component';
+import { VideoGamesDtService } from './services/videogames.dt-service';
 
 // Importaciones de shared.
 import { DataTablesModule } from '@shared/datatables/datatables.module';
@@ -15,12 +16,15 @@ import { DataTablesModule } from '@shared/datatables/datatables.module';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        HomeRoutingModule,
+        VideoGamesRoutingModule,
         DataTablesModule
     ],
     declarations: [
-        HomeComponent
+        VideoGamesComponent
+    ],
+    providers: [
+        VideoGamesDtService
     ]
 })
 
-export class HomeModule { }
+export class VideoGamesModule { }

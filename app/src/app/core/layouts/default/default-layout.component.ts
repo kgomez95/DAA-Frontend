@@ -1,4 +1,6 @@
+// Librerías.
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-default-layout',
@@ -6,6 +8,8 @@ import { Component } from '@angular/core';
 })
 export class DefaultLayoutComponent {
 
-    constructor() { }
+    constructor(
+        public titleService: Title,
+    ) { }
 
 }

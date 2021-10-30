@@ -19,6 +19,21 @@ const routes: Routes = [
         loadChildren: () => import('@app/home/home.module').then(m => m.HomeModule)
       },
       {
+        path: 'scores',
+        component: DefaultLayoutComponent,
+        loadChildren: () => import('@app/scores/scores.module').then(m => m.ScoresModule)
+      },
+      {
+        path: 'videogames',
+        component: DefaultLayoutComponent,
+        loadChildren: () => import('@app/videogames/videogames.module').then(m => m.VideoGamesModule)
+      },
+      {
+        path: 'platforms',
+        component: DefaultLayoutComponent,
+        loadChildren: () => import('@app/platforms/platforms.module').then(m => m.PlatformsModule)
+      },
+      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full'

@@ -1,4 +1,19 @@
-<div>
-    <h1>Inicio</h1>
-    <app-datatables [service]="homeDtService"></app-datatables>
+<div class="container-fluid">
+    <p>Esta aplicación se ha creado con el único fin de montar un sistema de tablas capaz de cargar todos sus datos
+        desde el servidor; tanto la cabecera de las tablas, como los filtros, sus acciones y por supuesto, sus
+        datos.</p>
+    <p>Para hacer esto posible, se ha definido un sistema estándar que todas las tablas de datos deben de seguir
+        para su correcto funcionamiento. Este sistema se encuentra en el módulo "datatables" que se encuentra en la
+        carpeta "shared" de este proyecto, y básicamente, consiste en definir una estructura de datos para las
+        cabeceras, una estructura de datos para los filtros y una estructura de datos para los datos de la tabla.
+        También se ha definido los tipos de campos que puede soportar la tabla para mostrar así el valor en un
+        formato u otro, por ejemplo, no es lo mismo mostrar un decimal que una moneda, ya que aunque los dos puedan
+        ser del mismo tipo de dato la forma de mostrarse por pantalla es diferente (un decimal muestra solamente el
+        número mientras que la moneda muestra el número más el tipo de moneda).
+    </p>
+    <p>Este sistema estándar explicado en el párrafo anterior no solo se aplica en la parte frontal de la
+        aplicación, sino que también se tiene que tener en cuenta en la parte del servicio que proporcionará los
+        datos para que tanto cliente como servidor puedan funcionar correctamente.</p>
+    <p>Así pues, tenéis arriba la navegación de la página para poder ir a las diferentes tablas para poder comprobar
+        el funcionamiento de este sistema de tablas.</p>
 </div>
