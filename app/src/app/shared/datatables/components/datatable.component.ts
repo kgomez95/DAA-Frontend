@@ -293,10 +293,10 @@ export class DataTableComponent implements OnInit {
      * @returns Retorna el identificador del registro o una excepción.
      */
     private recoverRecordId(record: any): number {
-        let field: any = record.find((x: any) => x.code === 'id');
+        let field: any = record.find((x: any) => x.code.toLowerCase() === 'id');
 
         if (field) return field.value;
-        else throw new Error('[recoverRecordId] no se puede eliminar el registro, porque no se encuentra su identificador.');
+        else throw new Error('[recoverRecordId] no se ha encontrado el identificador del registro.');
     }
 
     /**
